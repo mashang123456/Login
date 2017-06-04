@@ -38,7 +38,7 @@ public class MainActivity extends Activity implements OnClickListener{
         bt_login.setOnClickListener(this);
 
         //f.回显用户名密码
-        Map<String, String> map = UserInfoUtil.getUserInfo_android(mContext);//获取用户名密码
+        Map<String, String> map = UserInfoUtil.getUserInfo_sharedPre(mContext);//获取用户名密码
         if(map != null){
             String username = map.get("username");
             String password = map.get("password");
@@ -46,7 +46,6 @@ public class MainActivity extends Activity implements OnClickListener{
             et_password.setText(password);
             cb_rem.setChecked(true);//设置复选框选中状态
         }
-
     }
 
     private void login(){
@@ -64,7 +63,7 @@ public class MainActivity extends Activity implements OnClickListener{
 
         //e.判断是否记住密码，如果记住，将用户名密码保存本地
         if(isrem){
-            boolean result = UserInfoUtil.saveUserInfo_android(mContext,username,password);
+            boolean result = UserInfoUtil.saveUserInfo_sharedPre(mContext,username,password);
             if(result){
                 Toast.makeText(mContext, "用户名密码保存成功", Toast.LENGTH_SHORT).show();
             }else{
@@ -74,8 +73,6 @@ public class MainActivity extends Activity implements OnClickListener{
         }else{
             Toast.makeText(mContext, "无需保存", Toast.LENGTH_SHORT).show();
         }
-
-
 
     }
 
@@ -90,6 +87,4 @@ public class MainActivity extends Activity implements OnClickListener{
                 break;
         }
     }
-
-
 }
